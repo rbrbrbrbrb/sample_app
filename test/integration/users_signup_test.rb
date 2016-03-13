@@ -8,11 +8,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test "invalid user information" do
     get signup_path
     assert_no_difference 'User.count' do
-      post users_path user: {name: "", email: "me@wrong", password:"longpasswd", password_confirmation:"longerpasswd"}
+      post users_path user: {name: "", email: "mexample@wrong", password:"longpasserwd", password_confirmation:"longpasswd"}
     end
     assert_template 'users/new'
     assert_select 'div#error_explanation'
     assert_select 'div.field_with_errors'
+    
   end
 
   test "valid user signup" do
@@ -22,5 +23,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/show'
     assert_not flash.empty?
+    assert is_logged_in?
   end     
 end
