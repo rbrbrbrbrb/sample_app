@@ -64,4 +64,5 @@ class UsersControllerTest < ActionController::TestCase
     assert_not @other_user.reload.admin?
   end
 
+  
 end

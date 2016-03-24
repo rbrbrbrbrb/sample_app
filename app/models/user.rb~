@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   #returns true if the given token from the client cookie matches the digest in the database
   def authenticated?(remember_token)
-    return false if remember_digets.nil?
+    return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest) == remember_token
   end
 
